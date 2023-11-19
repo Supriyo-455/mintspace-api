@@ -1,0 +1,58 @@
+Mintspace routes:
+    * Homeroute ->
+            -  http://mintspace/           ***(PROTECTED ROUTE PARTIALLY PROTECTED)
+                    - / GET REQ
+                    - /{id}/ GET REQ  
+    * LoginRoute ->
+            -  http://mintspace/login/
+                    - / GET REQ
+                    - / POST REQ
+    * SignupRoute ->
+            -   http://mintspace/signup/
+                    - / GET REQ
+                    - / POST REQ
+    * ProfileRoute ->               
+            -   http://mintspace/profile/   ***(PROTECTED ROUTE)
+                    - / GET REQ
+                    - / POST REQ
+    * BlogCreateRoute ->                    ***(PROTECTED ROUTE)
+            -   http://mintspace/write/
+                    - / GET REQ
+                    - / POST REQ
+    * AdminRoute ->                         ***(PROTECTED ROUTE REQUIRES ADMIN PREVILEDGE)
+            -   http://mintspace/admin
+                    - / GET REQ
+                    - / POST REQ
+
+
+
+
+* Home route without auth verification should display blogs with regular tags,
+    and with auth verification both regular and premimum vlogs can be shown.
+
+
+
+* Blog object structure ->
+        - ID
+        - AuthorEmail
+        - IsPremium
+        - Title
+        - Content
+
+* User object structure ->
+        - Email
+        - Name
+        - IsAdmin
+        - DateOfBirth
+        - ProfileCreatedDate
+        - EncryptedPassword
+
+* LoginRequest structure ->
+        - Email
+        - Password
+
+* SignupRequest structure ->
+        - Email
+        - Name
+        - Password
+        - DateOfBirth
