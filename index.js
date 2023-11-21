@@ -1,7 +1,14 @@
 const express = require('express');
 const app = express();
 const port = 3000;
+
+const { StatusCodes } = require('http-status-codes');
+
 const homeRoute = require('./routes/homeRoute');
+const loginRoute = require('./routes/loginRoute');
+const signupRoute = require('./routes/signupRoute');
+const errorHandler = require('./middleware/errorHandler');
+const jwtValidate = require('./middleware/jwtValidate');
 
 app.use(express.json());
 
@@ -10,14 +17,16 @@ app.use(express.urlencoded({
 }));
 
 app.use('/', homeRoute);
+app.use('/:id(\\d+)', homeRoute);
 
-/* Error handler middleware */
-app.use((err, req, res, next) => {
-    const statusCode = err.statusCode || 500;
-    console.error(err.message, err.stack);
-    res.status(statusCode).json({ message: err.message });
-    return;
-});
+app.use('/login', loginRoute);
+app.use('/signup', signupRoute);
+
+app.use('/secret', [jwtValidate, (req, res) => {
+    res.json({ "message": "very secret!!!" });
+}]);
+
+app.use(errorHandler);
 
 app.listen(port, () => {
     console.log(`Running on port http://localhost:${port}`);
