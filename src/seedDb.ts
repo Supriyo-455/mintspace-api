@@ -20,6 +20,7 @@ connection.query(seedQuery, (err: Error, results: mysql.ResultSetHeader) => {
         throw err;
     }
 
-    console.log("SQL seeding completed!", results);
+    const resultStr = JSON.stringify(results);
+    console.log("SQL seeding completed!", resultStr);
     connection.end();
 });

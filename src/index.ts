@@ -3,11 +3,11 @@ import { Request, Response } from 'express';
 const app = express();
 const port = 3000;
 
-import { StatusCodes } from 'http-status-codes';
-
 import homeRoute from './routes/homeRoute';
 import loginRoute from './routes/loginRoute';
 import signupRoute from './routes/signupRoute';
+import blogCreateRoute from './routes/blogCreateRoute';
+
 import errorHandler from './middleware/errorHandler';
 import jwtValidate from './middleware/jwtValidate';
 
@@ -23,9 +23,7 @@ app.use('/:id(\\d+)', homeRoute);
 app.use('/login', loginRoute);
 app.use('/signup', signupRoute);
 
-app.use('/secret', [jwtValidate, (req: Request, res: Response) => {
-    res.json({ "message": "very secret!!!" });
-}]);
+app.use('/create', [jwtValidate, blogCreateRoute]);
 
 app.use(errorHandler);
 
