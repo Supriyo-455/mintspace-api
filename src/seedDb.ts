@@ -1,8 +1,11 @@
 import config from "./config";
 import mysql from 'mysql2';
 import fs from 'fs';
+import { join } from "path";
 
-const seedQuery = fs.readFileSync("../seed.sql", {
+const root = process.cwd();
+
+const seedQuery = fs.readFileSync(join(root, 'seed.sql'), {
     encoding: "utf-8",
 });
 
@@ -11,7 +14,7 @@ connection.connect();
 
 console.log("running sql seed...");
 
-connection.query(seedQuery, (err: Error, results: mysql.RowDataPacket) => {
+connection.query(seedQuery, (err: Error, results: mysql.ResultSetHeader) => {
     if (err) {
         console.error("Error executing SQL script:", err.message);
         throw err;
