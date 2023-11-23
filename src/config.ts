@@ -1,6 +1,6 @@
-const crypto = require('crypto');
+import dotenv from 'dotenv';
 
-require('dotenv').config();
+dotenv.config();
 
 const config = {
   db: {
@@ -22,4 +22,4 @@ const config = {
   listPerPage: 10,
 };
 
-module.exports = config;
+export default config;

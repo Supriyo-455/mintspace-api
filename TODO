@@ -1,8 +1,9 @@
 # Important
     - need to pass the jwt token when accessing protected route.
-    - Hide password and sensitive info from config.js
     - Do we need to use concurrency at all?
-    - Migrate javascript to typescript?
+    - Fix jwtValidate middleware
 
 # Fixed issues
     - Router parameter in the homeroute should only match integers, but its matching everything. (FIXED)
+    - Migrate javascript to typescript?
+    - Hide password and sensitive info from config.js
