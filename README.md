@@ -5,14 +5,14 @@ Mintspace is a blogging platform where you can read and share knowledge with you
 ### Description
 This is the api that will be used inside the front-ends for different platforms web, mobile and ios.
 
-#### Technology used
+#### Technologies used
 - NodeJS
 - Typescript
 - MySQL
 - Markdown
 
 ### Instructions to run on your local machine
-- Clone the repo on your local machine.
+- Clone the repo on your local machine and open a terminal/cmd window from that repo directory.
 - You should have Nodejs, MySQL installed on your pc/laptop.
 - After this everything is very simple, just follow my steps.
 
