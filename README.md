@@ -40,7 +40,7 @@ npm run build
 ```
 - Change the .env file contents (DB_*) according to your mysql configs
 - Create a database in your mysql database named **goblogapi**
-- Then run the database seeding database script
+- Then run the database seeding script
 ```
 npm run seedDb
 ```
