@@ -19,7 +19,7 @@ const config = {
     "tokenLife": 900,
     "refreshTokenLife": 86400
   },
-  port: Number(process.env.NODE_DOCKER_PORT),
+  port: Number(process.env.NODE_LOCAL_PORT),
   listPerPage: 10,
 };
 
