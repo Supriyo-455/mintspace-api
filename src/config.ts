@@ -7,8 +7,8 @@ const config = {
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
-    database: "goblogapi",
-    port: 3306,
+    database: process.env.DB_NAME,
+    port: Number(process.env.DB_PORT),
     multipleStatements: true,
     connectTimeout: 60000,
   },
@@ -19,6 +19,7 @@ const config = {
     "tokenLife": 900,
     "refreshTokenLife": 86400
   },
+  port: Number(process.env.NODE_DOCKER_PORT),
   listPerPage: 10,
 };
 

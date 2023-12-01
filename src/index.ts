@@ -1,7 +1,7 @@
 import express from 'express';
-import { Request, Response } from 'express';
+import config from './config';
 const app = express();
-const port = 3000;
+const port = config.port;
 
 import homeRoute from './routes/homeRoute';
 import loginRoute from './routes/loginRoute';

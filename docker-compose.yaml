@@ -1,0 +1,48 @@
+version: "3.8"
+services:
+  mintspace-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - $NODE_LOCAL_PORT:$NODE_DOCKER_PORT
+    volumes:
+      - ./:/app
+      - /app/node_modules
+    env_file:
+      - ./.env
+    environment:
+      - DB_NAME=$DB_NAME
+      - DB_USER=$DB_USER
+      - DB_PASSWORD=$DB_PASSWORD
+      - DB_HOST=db
+      - DB_PORT=$DB_DOCKER_PORT
+      - JWT_SECRET=$JWT_SECRET
+      - JWT_REFRESH_TOKEN_SECRET=$JWT_REFRESH_TOKEN_SECRET
+      - NODE_DOCKER_PORT=$NODE_DOCKER_PORT
+      - NODE_LOCAL_PORT=$NODE_LOCAL_PORT
+    depends_on:
+      db:
+        condition: service_healthy
+  db:
+    image: mysql
+    restart: always
+    env_file: ./.env
+    environment:
+      - MYSQL_ROOT_PASSWORD=$DB_PASSWORD
+      - MYSQL_DATABASE=$DB_NAME
+    ports:
+      # <Port exposed> : <MySQL Port running inside container>
+      - $DB_LOCAL_PORT:$DB_DOCKER_PORT
+    volumes:
+      - my-db:/var/lib/mysql
+      - "./seed.sql:/docker-entrypoint-initdb.d/1.sql"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+# Names our volume
+volumes:
+  my-db:
