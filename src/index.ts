@@ -27,6 +27,6 @@ app.use('/create', [jwtValidate, blogCreateRoute]);
 
 app.use(errorHandler);
 
-app.listen(port, () => {
-    console.log(`Running on port http://localhost:${port}`);
+app.listen(port || 80, '0.0.0.0', () => {
+    console.log(`Mintspace api running..`);
 });
