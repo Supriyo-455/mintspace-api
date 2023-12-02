@@ -15,10 +15,19 @@ export interface UserSignInRequest {
     password: string,
     admin: boolean,
     dateOfBirth: string,
-    dateCreated: string
+    dateOfCreation: string
 };
 
 export interface UserLoginRequest {
     email: string,
     password: string
+};
+
+export interface UserAndBlog extends RowDataPacket {
+    email: string,
+    name: string,
+    dateOfBirth: string,
+    blogId: number,
+    premium: boolean,
+    title: string,
 };

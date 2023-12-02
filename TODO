@@ -1,11 +1,15 @@
 # Important
     - Complete the signup
-    - Do we need to use concurrency at all?
     - Create a compact message structure for rest-api output
     - Create logging functionalities
     - Get user details from profile
     - Production build and development build
-    - Remove typescript from docker image
+    - api versioning
+    - api docs
+    - pagination and filtration
+    - test cases
+    - for protected routes use headers to identify users
+    - error handling not working after api-versioning
 
 # Fixed issues
     - Router parameter in the homeroute should only match integers, but its matching everything. (FIXED)

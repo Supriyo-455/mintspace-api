@@ -3,13 +3,9 @@ import config from './config';
 const app = express();
 const port = config.port;
 
-import homeRoute from './routes/homeRoute';
-import loginRoute from './routes/loginRoute';
-import signupRoute from './routes/signupRoute';
-import blogCreateRoute from './routes/blogCreateRoute';
+import v1router from './routes/v1/router';
 
-import errorHandler from './middleware/errorHandler';
-import jwtValidate from './middleware/jwtValidate';
+import apiVersionHandler from './middleware/apiVersionHandler';
 
 app.use(express.json());
 
@@ -17,16 +13,11 @@ app.use(express.urlencoded({
     extended: true,
 }));
 
-app.use('/', homeRoute);
-app.use('/:id(\\d+)', homeRoute);
+app.use(apiVersionHandler);
 
-app.use('/login', loginRoute);
-app.use('/signup', signupRoute);
+app.use('/v1', v1router);
 
-app.use('/create', [jwtValidate, blogCreateRoute]);
 
-app.use(errorHandler);
-
-app.listen(port || 80, '0.0.0.0', () => {
+app.listen(port || 3000, '0.0.0.0', () => {
     console.log(`Mintspace api running..`);
 });

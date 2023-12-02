@@ -3,10 +3,10 @@ import { Request, Response } from 'express';
 const router = express.Router();
 import { StatusCodes } from 'http-status-codes';
 import jwt from 'jsonwebtoken';
-import { checkEmailAndPassword } from '../services/auth';
-import config from '../config';
-import { getErrorMessage } from '../utils/errorUtils';
-import { UserLoginRequest } from '../types/user';
+import { checkEmailAndPassword } from '../../services/auth';
+import config from '../../config';
+import { getErrorMessage } from '../../utils/errorUtils';
+import { UserLoginRequest } from '../../types/user';
 
 router.post('/', async (req: Request, res: Response, next: NextFunction) => {
     const loginRequst: UserLoginRequest = {
@@ -24,7 +24,7 @@ router.post('/', async (req: Request, res: Response, next: NextFunction) => {
                 "token": token,
                 "refreshToken": refreshToken,
             };
-            res.status(StatusCodes.OK).json(response);
+            res.status(StatusCodes.OK).json({ "error": false, "result": response });
         } else {
             res.status(StatusCodes.UNAUTHORIZED).json({
                 "message": "wrong email or password!"
