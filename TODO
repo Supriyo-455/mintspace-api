@@ -10,6 +10,7 @@
     - test cases
     - for protected routes use headers to identify users
     - error handling not working after api-versioning
+    - authentication types
 
 # Fixed issues
     - Router parameter in the homeroute should only match integers, but its matching everything. (FIXED)

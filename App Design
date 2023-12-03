@@ -1,26 +1,26 @@
 Mintspace routes:
     * Homeroute ->
-            -  http://mintspace/           ***(PROTECTED ROUTE PARTIALLY PROTECTED) (A)
+            -  http://mintspace/v1           ***(PROTECTED ROUTE PARTIALLY PROTECTED) (A)
                     - / GET REQ
                     - /{id}/ GET REQ  
     * LoginRoute ->
-            -  http://mintspace/login/
+            -  http://mintspace/v1/login/
                     - / GET REQ
                     - / POST REQ
     * SignupRoute ->
-            -   http://mintspace/signup/
+            -   http://mintspace/v1/signup/
                     - / GET REQ
                     - / POST REQ
     * ProfileRoute ->               
-            -   http://mintspace/profile/   ***(PROTECTED ROUTE)
+            -   http://mintspace/v1/profile/   ***(PROTECTED ROUTE)
                     - / GET REQ
                     - / POST REQ
     * BlogCreateRoute ->                    ***(PROTECTED ROUTE)
-            -   http://mintspace/write/
+            -   http://mintspace/v1/write/
                     - / GET REQ
                     - / POST REQ
     * AdminRoute ->                         ***(PROTECTED ROUTE REQUIRES ADMIN PREVILEDGE)
-            -   http://mintspace/admin
+            -   http://mintspace/v1/admin
                     - / GET REQ
                     - / POST REQ
 

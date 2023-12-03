@@ -11,9 +11,9 @@ import usersRoute from './usersRoute';
 import jwtValidate from '../../middleware/jwtValidate';
 import errorHandler from '../../middleware/errorHandler';
 
-router.use('/blogs/', homeRoute);
+router.use('/blogs', homeRoute);
 router.use('/blogs/:id(\\d+)', homeRoute);
-router.use('/users/', usersRoute);
+router.use('/users', usersRoute);
 
 router.use('/login', loginRoute);
 router.use('/signup', signupRoute);
