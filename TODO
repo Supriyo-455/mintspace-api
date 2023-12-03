@@ -19,3 +19,4 @@
     - Fix jwtValidate middleware
     - need to pass the jwt token when accessing protected route.
     - Dockerised the project.
+    - Pagination done for blogs route

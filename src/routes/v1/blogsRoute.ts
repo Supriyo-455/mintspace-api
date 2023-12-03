@@ -8,8 +8,9 @@ import { StatusCodes } from 'http-status-codes';
 
 router.get('/', async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const result = await getBlogs();
-        res.status(StatusCodes.OK).json({ "error": false, "result": result });
+        const page = req.query.page;
+        const result = await getBlogs(Number(page));
+        res.status(StatusCodes.OK).json({ "error": false, "result": result, "page": page });
     } catch (err) {
         console.error(`error while fetching blogs: ${getErrorMessage(err)}`);
         next(err);

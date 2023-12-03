@@ -27,6 +27,7 @@ router.post('/', async (req: Request, res: Response, next: NextFunction) => {
             res.status(StatusCodes.OK).json({ "error": false, "result": response });
         } else {
             res.status(StatusCodes.UNAUTHORIZED).json({
+                "error": true,
                 "message": "wrong email or password!"
             });
         }
