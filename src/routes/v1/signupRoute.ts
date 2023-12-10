@@ -4,6 +4,7 @@ import { Request, Response } from 'express';
 import { signupNewUser } from '../../services/auth';
 import { getErrorMessage } from '../../utils/errorUtils';
 import { UserSignInRequest } from '../../types/user';
+import { ApiResponse } from '../../types/ApiResponse';
 
 router.post('/', async (req: Request, res: Response, next: NextFunction) => {
     const user: UserSignInRequest = {
@@ -18,7 +19,11 @@ router.post('/', async (req: Request, res: Response, next: NextFunction) => {
     try {
         const newId = await signupNewUser(user);
         const result = { "message": `created new user with id:${newId}` };
-        res.status(200).json({ "error": false, "result": result });
+        const response: ApiResponse = {
+            "error": false,
+            "result": result
+        }
+        res.status(200).json(response);
     } catch (err) {
         console.error("error while creating user ", getErrorMessage(err));
         next(err);  // TODO: change error message

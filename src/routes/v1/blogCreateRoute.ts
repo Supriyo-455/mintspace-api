@@ -5,6 +5,7 @@ import { BlogCreateRequest } from '../../types/blog';
 import { createBlog } from '../../services/blog';
 import { getErrorMessage } from '../../utils/errorUtils';
 import { StatusCodes } from 'http-status-codes';
+import { ApiResponse } from '../../types/ApiResponse';
 
 router.post('/', async (req: Request, res: Response, next: NextFunction) => {
     const blogRequest: BlogCreateRequest = {
@@ -17,7 +18,11 @@ router.post('/', async (req: Request, res: Response, next: NextFunction) => {
     try {
         const newBlog = await createBlog(blogRequest);
         const result = { "message": `blog created with id:${newBlog.insertId}` };
-        res.status(StatusCodes.OK).send({ "error": false, "result": result });
+        const response: ApiResponse = {
+            "error": false,
+            "result": result
+        }
+        res.status(StatusCodes.OK).json(response);
     } catch (err) {
         console.error(`error while creating blog: ${getErrorMessage(err)}`);
         next(err);
