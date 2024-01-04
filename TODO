@@ -1,9 +1,9 @@
 # Important
+    - Swagger API docs
     - Create a compact message structure for rest-api output
     - Create logging functionalities
     - Production build and development build
     - api versioning
-    - api docs
     - pagination and filtration
     - test cases
     - for protected routes use headers to identify users
