@@ -1,7 +1,7 @@
 Mintspace routes:
     * Homeroute ->
             -  http://mintspace/v1           ***(PROTECTED ROUTE PARTIALLY PROTECTED) (A)
-                    - / GET REQ
+                    - /?page={number} GET REQ
                     - /{id}/ GET REQ  
     * LoginRoute ->
             -  http://mintspace/v1/login/

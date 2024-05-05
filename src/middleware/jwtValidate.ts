@@ -2,6 +2,7 @@ import { NextFunction, Request, RequestHandler, Response } from 'express';
 import jwt, { VerifyErrors } from 'jsonwebtoken';
 import { StatusCodes } from 'http-status-codes';
 import config from '../config';
+import { ApiResponse } from '../types/ApiResponse';
 
 export default (req: Request<{ token: string }>, res: Response, next: NextFunction) => {
     const token = req.header('x-access-token');
@@ -11,15 +12,17 @@ export default (req: Request<{ token: string }>, res: Response, next: NextFuncti
             res.locals.jwtPayload = decoded;
             next();
         } catch (err) {
-            res.status(StatusCodes.UNAUTHORIZED).send({
+            const response: ApiResponse = {
                 "error": true,
                 "message": 'Unauthorized access!.'
-            });
+            };
+            res.status(StatusCodes.UNAUTHORIZED).send(response);
         }
     } else {
-        return res.status(StatusCodes.FORBIDDEN).send({
+        const response: ApiResponse = {
             "error": true,
             "message": 'No token provided.'
-        });
+        };
+        return res.status(StatusCodes.FORBIDDEN).send(response);
     }
 };

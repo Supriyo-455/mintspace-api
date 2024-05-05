@@ -1,7 +1,7 @@
 import express from 'express';
 const router = express.Router();
 
-import homeRoute from './blogsRoute';
+import blogsRoute from './blogsRoute';
 import loginRoute from './loginRoute';
 import signupRoute from './signupRoute';
 import blogCreateRoute from './blogCreateRoute';
@@ -11,8 +11,8 @@ import usersRoute from './usersRoute';
 import jwtValidate from '../../middleware/jwtValidate';
 import errorHandler from '../../middleware/errorHandler';
 
-router.use('/blogs', homeRoute);
-router.use('/blogs/:id(\\d+)', homeRoute);
+router.use('/blogs', blogsRoute);
+router.use('/blogs/:id(\\d+)', blogsRoute);
 router.use('/users', usersRoute);
 
 router.use('/login', loginRoute);

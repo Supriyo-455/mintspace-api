@@ -17,11 +17,10 @@ router.post('/', async (req: Request, res: Response, next: NextFunction) => {
 
     try {
         const newBlog = await createBlog(blogRequest);
-        const result = { "message": `blog created with id:${newBlog.insertId}` };
         const response: ApiResponse = {
             "error": false,
-            "result": result
-        }
+            "message": `blog created with id:${newBlog.insertId}`
+        };
         res.status(StatusCodes.OK).json(response);
     } catch (err) {
         console.error(`error while creating blog: ${getErrorMessage(err)}`);

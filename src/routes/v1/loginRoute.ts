@@ -27,7 +27,8 @@ router.post('/', async (req: Request, res: Response, next: NextFunction) => {
             };
             const response: ApiResponse = {
                 error: false,
-                result: result
+                result: result,
+                message: "user logged in successfully!"
             }
             res.status(StatusCodes.OK).json(response);
         } else {

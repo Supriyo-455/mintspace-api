@@ -18,10 +18,9 @@ router.post('/', async (req: Request, res: Response, next: NextFunction) => {
 
     try {
         const newId = await signupNewUser(user);
-        const result = { "message": `created new user with id:${newId}` };
         const response: ApiResponse = {
             "error": false,
-            "result": result
+            "message": `created new user with email:${user.email}`
         }
         res.status(200).json(response);
     } catch (err) {

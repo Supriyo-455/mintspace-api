@@ -13,11 +13,13 @@ router.post('/', async (req: Request, res: Response, next: NextFunction) => {
             const result = await getUserByEmail(email);
             const response: ApiResponse = {
                 "error": false,
-                "result": result
+                "result": result,
+                "message": "profile details fetched successfully!"
             }
             return res.status(StatusCodes.OK).json(response);
         } else {
-            return res.status(StatusCodes.FORBIDDEN).send({ "error": true, "message": "please enter email id." });
+            const response: ApiResponse = { "error": true, "message": "please enter email id." }
+            return res.status(StatusCodes.FORBIDDEN).send(response);
         }
     } catch (err) {
         console.error(`error while fetching profile details: ${getErrorMessage(err)}`);
