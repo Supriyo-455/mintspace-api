@@ -14,7 +14,7 @@ export default (req: Request<{ token: string }>, res: Response, next: NextFuncti
         } catch (err) {
             const response: ApiResponse = {
                 "error": true,
-                "message": 'Unauthorized access!.'
+                "message": 'Unauthorized access!'
             };
             res.status(StatusCodes.UNAUTHORIZED).send(response);
         }

@@ -20,6 +20,7 @@ const config = {
     "refreshTokenLife": 86400
   },
   port: Number(process.env.PORT),
+  origin: `http://localhost:${Number(process.env.PORT)}`,
   listPerPage: 10,
 };
 
