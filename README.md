@@ -1,64 +1,86 @@
-# Mintspace - Empowering Knowledge Sharing
+## Mintspace - Empowering Knowledge Sharing
 
-Welcome to Mintspace, your go-to platform for seamless knowledge sharing through insightful blogs. Whether you're an avid reader or an enthusiastic writer, Mintspace provides a dynamic environment for connecting with friends and followers who share your passion for learning.
+Mintspace is a platform for easy blogging and knowledge sharing.  
+Read, write, and connect with others who share your interests.
 
-## Unleashing the Power of Mintspace API
+## Technologies
 
-### Description
+- NodeJS: Backend runtime
+- TypeScript: Strongly typed JavaScript
+- MySQL: Database
+- Markdown: For clean content formatting
 
-Mintspace's API serves as the backbone for an exceptional user experience across various platforms, including web, mobile, and iOS. By leveraging cutting-edge technologies such as NodeJS, Typescript, MySQL, and Markdown, Mintspace ensures a robust and scalable infrastructure to fuel your blogging journey.
+## API Routes
 
-### Technologies at a Glance
+Home (/v1)
 
-- **NodeJS**: Powering the backend with efficiency and speed.
-- **Typescript**: Bringing static typing and enhanced tooling to your development workflow.
-- **MySQL**: A reliable and scalable relational database for seamless data management.
-- **Markdown**: Crafting beautiful and structured content effortlessly.
+- GET /?page={number} → Public blogs
+- GET /{id} → Blog by ID  
+  (Authenticated users can see both regular and premium blogs)
 
-## Get Started Locally in a Few Simple Steps
+Login (/v1/login)
 
-### Step 1) Setup TypeScript Compiler
+- GET /
+- POST /
 
-```bash
-npm install -g typescript
-```
+Signup (/v1/signup)
 
-### Step 2) Verify TypeScript Installation
+- GET /
+- POST /
 
-```bash
-tsc --v
-# You should see something like: Version 4.0.2
-```
+Profile (/v1/profile) [Protected]
 
-### Step 3) Install Project Dependencies
+- GET /
+- POST /
 
-```bash
-npm install
-```
+Blog Create (/v1/write) [Protected]
 
-### Step 4) Configure and Seed MySQL Database
+- GET /
+- POST /
 
-1. Compile TypeScript files:
-   ```bash
+Admin (/v1/admin) [Admin Only]
+
+- GET /
+- POST /
+
+## Data Models
+
+Blog:  
+ID, AuthorEmail, IsPremium, Title, Content
+
+User:  
+Email, Name, IsAdmin, DateOfBirth, ProfileCreatedDate, EncryptedPassword
+
+## Setup Instructions
+
+1. Install TypeScript  
+   npm install -g typescript
+
+2. Check TypeScript version  
+   tsc --v
+
+3. Install dependencies  
+   npm install
+
+4. Build project  
    npm run build
-   ```
-2. Update the `.env` file with your MySQL configurations.
-3. Create a MySQL database named **goblogapi**.
-4. Run the database seeding script:
-   ```bash
+
+5. Configure .env with MySQL settings
+
+6. Create a database named goblogapi
+
+7. Seed the database  
    npm run seedDb
-   ```
 
-### Step 5) Launch the Express Server
+8. Start the server  
+   npm run start
 
-```bash
-npm run start
-```
+## Server URL
 
-### Congratulations! Mintspace-API is Now Live on http://localhost:3000/v1/
+http://localhost:5006/v1/
 
-## Start Your Journey of Knowledge Sharing
+## Swagger docs
 
-Mintspace invites you to explore, engage, and contribute to a community driven by curiosity and the pursuit of knowledge. Whether you're here to read or share your wisdom, Mintspace provides a platform where ideas flourish, and connections are made.
+http://localhost:5006/docs/
 
-### Join Mintspace Today and Elevate Your Blogging Experience! 🚀
+## Mintspace - Write. Share. Inspire.

@@ -3,8 +3,11 @@ import config from './config';
 import cors from "cors";
 import v1router from './routes/v1/router';
 import apiVersionHandler from './middleware/apiVersionHandler';
+import swaggerDocs from './swagger';
 
 const app = express();
+
+swaggerDocs(app);
 
 app.use(cors({origin: "*"}));
 
