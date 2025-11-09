@@ -12,7 +12,7 @@ import jwtValidate from '../../middleware/jwtValidate';
 import errorHandler from '../../middleware/errorHandler';
 
 router.use('/blogs', blogsRoute);
-router.use('/blogs/:id(\\d+)', blogsRoute);
+router.use('/blogs/like', [jwtValidate, blogsRoute]); // TODO: This is not working need to fix this
 router.use('/users', usersRoute);
 
 router.use('/login', loginRoute);

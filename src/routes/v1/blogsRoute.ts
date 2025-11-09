@@ -1,11 +1,12 @@
 import express, { NextFunction } from 'express';
 import { Request, Response } from 'express';
 const router = express.Router();
-import { getBlogs, getBlogById, getLikesAndCommentsCountFromBlog, getBlogTags } from '../../services/blog';
+import { getBlogs, getBlogById, getLikesAndCommentsCountFromBlog, getBlogTags, addLikeToBlog, getCommentsFromBlogPaginated } from '../../services/blog';
 import { getErrorMessage } from '../../utils/errorUtils';
 import { StatusCodes } from 'http-status-codes';
 import { ApiResponse } from '../../types/ApiResponse';
 import { BlogWithStatsAndTags } from '../../types/blog';
+import { LikeReq } from '../../types/like';
 
 /**
  * @swagger
@@ -152,6 +153,42 @@ router.get('/:id(\\d+)', async (req: Request, res: Response, next: NextFunction)
         res.status(StatusCodes.OK).json(response);
     } catch (err) {
         console.error(`error: ${getErrorMessage(err)}, while fetching blog having id: ${req.params.id}`);
+        next(err);
+    }
+});
+
+router.get('/comments', async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const result = await getCommentsFromBlogPaginated(Number(req.query.blogId), Number(req.query.page));
+        const response: ApiResponse = {
+            "error": false,
+            "result": result,
+            "page": Number(req.query.page)
+        }
+        res.status(StatusCodes.OK).json(response);
+    } catch (err) {
+        console.error(`error: ${getErrorMessage(err)}, while fetching blog having id: ${req.params.id}`);
+        next(err);
+    }
+});
+
+router.post('/like', async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const like: LikeReq = {
+            blogId: Number(req.body.blogId),
+            ipAddress: String(req.ip),
+            userEmail: req.body.email
+        };
+        
+        const result = await addLikeToBlog(like);
+
+        const response: ApiResponse = {
+            "error": false,
+            "result": result
+        }
+        res.status(StatusCodes.OK).json(response);
+    } catch (err) {
+        console.error(`error: ${getErrorMessage(err)}, while adding like to blog having id: ${req.body.bodyId}`);
         next(err);
     }
 });

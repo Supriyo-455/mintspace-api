@@ -2,7 +2,7 @@ import { connection } from "./db";
 import { getOffset } from "./helper";
 import config from "../config";
 import { ResultSetHeader } from "mysql2";
-import { Like } from "../types/like";
+import { LikeReq } from "../types/like";
 import { UserAndBlog } from "../types/user";
 import { Comment } from "../types/comment";
 import { Blog, BlogCreateRequest, BlogTag, LikesAndCommentsCount } from "../types/blog";
@@ -61,7 +61,7 @@ export function addTagToBlog(blogTag: BlogTag): Promise<ResultSetHeader> {
 	});
 }
 
-export function addLikeToBlog(like: Like): Promise<ResultSetHeader> {
+export function addLikeToBlog(like: LikeReq): Promise<ResultSetHeader> {
 	return new Promise((resolve, reject) => {
 		connection.query<ResultSetHeader>(`insert into likes(blogId, userEmail, ipAddress)
 			values (${like.blogId}, '${like.userEmail}', '${like.ipAddress}')`,
@@ -103,7 +103,7 @@ export function getCommentsFromBlogPaginated(blogId: number, page: number = 1): 
 			from comments c
 			where c.blogId = ${blogId}
 			limit ${offset}, ${config.listPerPage}
-			)`,
+			`,
 			(err, res) => {
 				if (err) reject(err);
 				else resolve(res);
