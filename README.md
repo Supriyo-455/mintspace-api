@@ -10,46 +10,9 @@ Read, write, and connect with others who share your interests.
 - MySQL: Database
 - Markdown: For clean content formatting
 
-## API Routes
+## For more details on the routes and app overview
 
-Home (/v1)
-
-- GET /?page={number} → Public blogs
-- GET /{id} → Blog by ID  
-  (Authenticated users can see both regular and premium blogs)
-
-Login (/v1/login)
-
-- GET /
-- POST /
-
-Signup (/v1/signup)
-
-- GET /
-- POST /
-
-Profile (/v1/profile) [Protected]
-
-- GET /
-- POST /
-
-Blog Create (/v1/write) [Protected]
-
-- GET /
-- POST /
-
-Admin (/v1/admin) [Admin Only]
-
-- GET /
-- POST /
-
-## Data Models
-
-Blog:  
-ID, AuthorEmail, IsPremium, Title, Content
-
-User:  
-Email, Name, IsAdmin, DateOfBirth, ProfileCreatedDate, EncryptedPassword
+Go to the file "App Design" file located at the root of this folder.
 
 ## Setup Instructions
 

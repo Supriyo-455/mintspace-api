@@ -1,9 +1,9 @@
 import bcrypt from 'bcrypt';
 import { getErrorMessage } from '../utils/errorUtils';
 
-const saltRounds = 3;
-
 export async function encryptPass(password: string) {
+    const saltRounds = 3;
+
     try {
         const salt = await bcrypt.genSalt(saltRounds);
         const hash = await bcrypt.hash(password, salt);

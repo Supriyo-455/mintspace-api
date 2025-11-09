@@ -1,11 +1,10 @@
 import express, { NextFunction } from 'express';
 import { Request, Response } from 'express';
 const router = express.Router();
-import { getBlogs, getBlogById, getLikesAndCommentsCountFromBlog, getBlogTags } from '../../services/blog';
+import { getBlogs, getBlogById } from '../../services/blog';
 import { getErrorMessage } from '../../utils/errorUtils';
 import { StatusCodes } from 'http-status-codes';
 import { ApiResponse } from '../../types/ApiResponse';
-import { BlogWithStatsAndTags } from '../../types/blog';
 
 /**
  * @swagger
@@ -115,21 +114,7 @@ import { BlogWithStatsAndTags } from '../../types/blog';
 router.get('/', async (req: Request, res: Response, next: NextFunction) => {
     try {
         const page = Number(req.query.page);
-        const blogs = await getBlogs(page);
-        
-        const result: BlogWithStatsAndTags[] = await Promise.all(
-            blogs.map(async (blog) => {
-                const likesAndCommentsCount = await getLikesAndCommentsCountFromBlog(blog.id!);
-                const tags = await getBlogTags(blog.id!);
-
-                return {
-                    ...blog,
-                    stats: likesAndCommentsCount[0],
-                    tags: tags.map(t => t.tag)
-                };
-            })
-        );
-
+        const result = await getBlogs(page);
         const response: ApiResponse = {
             "error": false,
             "result": result,

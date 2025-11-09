@@ -3,7 +3,7 @@ import { Request, Response } from 'express';
 const router = express.Router();
 import { getErrorMessage } from '../../utils/errorUtils';
 import { StatusCodes } from 'http-status-codes';
-import { getUsersAlongWithBlog } from '../../services/user';
+import { getUsersAlongWithBlog } from '../../services/blog';
 import { ApiResponse } from '../../types/ApiResponse';
 
 /**
